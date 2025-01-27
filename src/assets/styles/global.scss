@@ -1,0 +1,81 @@
+@use "./fonts";  
+@use "./variables" as *; 
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-base;
+  background-color: $color-white;
+  color: $color-text;
+}
+
+.app-header {
+  background: linear-gradient(180deg, #02ADF1 -2.37%, #4562E6 124.84%, #4563E6 124.84%);
+  text-align: center;
+
+  .logo {
+    height: 70px;
+    width: auto;
+    background-image: url("@/assets/logo.png");
+    background-repeat: no-repeat; 
+    background-position: center; 
+  }
+
+}
+
+.title {
+  text-align: center;
+  margin: 40px 0 80px 0;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.table-wrapper {
+  background-color: $color-primary;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 800px;
+  margin: 1.5rem auto 0 auto;
+  overflow: hidden;
+
+  thead {
+    background-color: color.adjust($color-primary, $lightness: 5%);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      color: $color-white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    td:nth-child(1) {
+      font-size: 12px;
+    }    
+
+    th:not(:last-child),
+    td:not(:last-child) {
+      border-right: 1px solid rgba($color-white, 0.3);
+    }
+
+    tr:not(:last-child) td {
+      border-bottom: 1px solid rgba($color-white, 0.2);
+    }
+  }
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.some-class {
+  color: color.adjust($gray-text, $lightness: -15%);
+}
