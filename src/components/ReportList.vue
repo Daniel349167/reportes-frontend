@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Notificación (condicional) -->
     <div 
       class="notification success"
       v-if="showSuccessNotification"
@@ -68,10 +67,9 @@ export default {
   setup() {
     const showForm = ref(false)
     const reports = ref([])
-    const newReportIds = ref([]) // Para llevar track de cuáles son nuevos
+    const newReportIds = ref([])
     const showSuccessNotification = ref(false)
 
-    // Llamada GET al backend para obtener la lista inicial
     async function fetchReports() {
       try {
         const response = await apiClient.get('/api/list-reports')
@@ -81,14 +79,12 @@ export default {
       }
     }
 
-    // Formatear la fecha
     function formatDate(dateString) {
       if (!dateString) return ''
       const date = new Date(dateString)
       return date.toLocaleDateString()
     }
 
-    // Cerrar la notificación
     function closeNotification() {
       showSuccessNotification.value = false
     }
@@ -96,17 +92,14 @@ export default {
     onMounted(() => {
       fetchReports()
 
-      // Escuchar el canal "reports" y el evento "report.generated"
       window.Echo.channel('reports')
         .listen('.report.generated', (e) => {
           // e.report es el nuevo reporte
           reports.value.unshift(e.report)
-          newReportIds.value.push(e.report.id) // Marcarlo como "nuevo"
+          newReportIds.value.push(e.report.id) 
 
-          // Mostrar la notificación en la esquina superior
           showSuccessNotification.value = true
 
-          // Opcional: cerrar la notificación después de 5 seg
           setTimeout(() => {
             showSuccessNotification.value = false
           }, 5000)
@@ -130,12 +123,10 @@ export default {
   margin-top: 1.5rem;
 }
 
-// Resaltar los nuevos reportes
 .new-report {
-  background-color: #b0ebb0; // verde claro, por ejemplo
+  background-color: #b0ebb0; 
 }
 
-// Notificación
 .notification {
   position: fixed;
   top: 40px;
@@ -148,7 +139,7 @@ export default {
   z-index: 9999;
 
   &.success {
-    background-color: #4caf50; // verde
+    background-color: #4caf50; 
   }
 }
 </style>
