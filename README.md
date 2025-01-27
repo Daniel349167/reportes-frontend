@@ -1,62 +1,70 @@
-# Vue + Vite Project
 
-Este proyecto está construido con **Vue 3** y utiliza **Vite** como herramienta de construcción y desarrollo. Sigue las instrucciones a continuación para configurar, desarrollar y ejecutar el proyecto.
+# Proyecto Vue con WebSockets
 
-## 🚀 Requisitos
+Este documento describe los pasos necesarios para instalar y ejecutar un proyecto Vue que implementa WebSockets. Sigue estas instrucciones para configurar tu entorno y comenzar a trabajar con el proyecto.
 
-Antes de empezar, asegúrate de tener instalados los siguientes requisitos:
+---
 
-- **Node.js**: Versión `16.x` o superior. Puedes descargarlo desde [Node.js](https://nodejs.org/).
-- **npm** o **yarn**: Administrador de paquetes que viene con Node.js. También puedes usar `pnpm` si lo prefieres.
+## Requisitos previos
 
-## 📦 Instalación
+1. **Node.js**: Versión 16 o superior.
+2. **NPM o Yarn**: Administrador de paquetes para instalar dependencias.
+3. **Servidor Backend**: Asegúrate de que tu servidor backend (por ejemplo, Laravel) esté corriendo en local o accesible remotamente.
 
-1. Clona el repositorio en tu máquina local:
+---
+
+## Instalación
+
+1. **Clonar el repositorio**
+
+   Clona el repositorio del proyecto a tu máquina local:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone <URL_DEL_REPOSITORIO>
+   cd <NOMBRE_DEL_PROYECTO>
    ```
 
-2. Ingresa al directorio del proyecto:
+2. **Instalar dependencias**
 
-   ```bash
-   cd tu-repositorio
-   ```
+   Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
-3. Instala las dependencias:
-
-   Usando npm:
    ```bash
    npm install
    ```
 
-   O usando yarn:
-   ```bash
-   yarn install
+3. **Crear el archivo `.env`**
+
+   Este proyecto utiliza variables de entorno para configurar la URL del servidor y las credenciales de Pusher. Crea un archivo `.env` en la raíz del proyecto y agrega las siguientes variables:
+
+   ```env
+   VITE_APP_API_URL=http://localhost:8000
+   VITE_PUSHER_APP_KEY=tu_app_key
+   VITE_PUSHER_APP_CLUSTER=tu_cluster
    ```
 
-   O usando pnpm:
+   - **`VITE_APP_API_URL`**: La URL de tu servidor backend (por defecto, Laravel usa `http://localhost:8000`).
+   - **`VITE_PUSHER_APP_KEY`**: La clave de tu aplicación de Pusher.
+   - **`VITE_PUSHER_APP_CLUSTER`**: El clúster configurado en tu cuenta de Pusher (por ejemplo, `us2`).
+
+4. **Compilar y ejecutar el proyecto**
+
+   Una vez configuradas las variables de entorno, puedes iniciar el servidor de desarrollo ejecutando:
+
    ```bash
-   pnpm install
+   npm run dev
    ```
 
-## 🔧 Scripts Disponibles
+   Esto iniciará la aplicación y estará disponible por defecto en `http://localhost:5173`.
 
-A continuación, los comandos más comunes que puedes usar:
+5. **Construir para producción**
 
-### Iniciar el servidor de desarrollo
-Inicia un servidor de desarrollo local en modo hot-reload:
-```bash
-npm run dev
-```
+   Si deseas compilar el proyecto para un entorno de producción, ejecuta:
 
-Por defecto, el proyecto estará disponible en [http://localhost:5173](http://localhost:5173).
+   ```bash
+   npm run build
+   ```
 
-### Generar un build de producción
-Crea un build optimizado para producción:
-```bash
-npm run build
-```
+   Los archivos de salida estarán en la carpeta `dist`, listos para ser desplegados en un servidor.
 
-Los archivos generados estarán en la carpeta `dist/`.
+---
 
